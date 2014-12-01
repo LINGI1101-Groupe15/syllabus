@@ -75,4 +75,28 @@ Le langage Prolog utilise ces 2 ordres.
 Ils voulaient faire un langage de programmation logique, et connaissaient les différentes formes de logique ainsi que la résolution. Ils ont donc inventé un langage très simple qu'ils ont appelé Prolog (pour Programmation Logique).  Il s'avère que ce langage a touché un compromis très intéressant par rapport à cette tension entre efficacité et expressivité.
 Aujourd'hui, on peut faire une implémentation extrêmement efficace de Prolog. Il est extrêmement expressif, ce qui permet de faire des programmes complexes. C’est un langage à part entière.
 \end{enumerate}
-	
+
+\subsection{Introduction à Prolog}
+
+\subsection{Algorithme d'exécution de Prolog}
+
+Dans la version de l’algorithme de preuve par résolution, l’ensemble S grandit (ce qui n’est pas très efficace).
+
+L’idée :
+\begin{itemize}
+	\item On commence par mettre le but (G) que l’on veut prouver dans r (sans négation).
+	\item Ensuite, jusqu’à ce que r soit vide, on Prend le premier littéral dans $r(A_{1})$.
+	\item Puis, on parcourt un à un les axiomes de P (P est le programme, la base de faits) pour trouver une clause $Ax_{i}$ unifiable avec $A_{1}$ au moyen de $\sigma(u.p.g)$
+	\begin{enumerate}
+		\item Si on trouve une telle clause, on ajoute à r les littéraux de $Ax_{i}$ après unification avec $A_{1}$ (et on recommence au début).
+		\item Si on ne trouve pas de clause unifiable, on revient sur le dernier choix (Par exemple, pour un $A_{1}$ qui aurait plusieurs clauses unifiables, on a dû en choisir une. Et bien on retourne en arrière pour en choisir une autre. Sans oublier de modifier r. (En effet, il faut éliminer les résultats de toutes les unifications qui ont été réalisées entre le moment où le point de choix a été mémorisé et le moment du retour en arrière.))
+		\item Si on épuise tous les choix sans que r soit vide alors nous somme en cas d’échec.
+	\end{enumerate}
+	\item Lorsque le programme s’arrête, si r est vide, on a un résultat.
+\end{itemize}
+
+Programme  : $P={Ax_{1}, ..., Ax_{n}}$
+
+Un « but » (un goal, une « requête ») G ($\simeq$ théorie)
+
+$r := <G>$ … résolvante (une séquence de littéraux $\rightarrow$ $r= <A_{1},A_{2},...,A_{m}>$  Il n’y a qu’un seul r.)
