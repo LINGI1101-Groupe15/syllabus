@@ -1,10 +1,39 @@
-\section{Citation Wikipédia}
+\section{Introduction à la programmation logique}
 \label{p2}
+\subsection{Introduction à la programmation logique}
 
+Prolog est l’un des principaux langages de programmation logique. Il est à la base de beaucoup de chose. 
 
-LaTeX est un langage et un système de composition de documents créé par Leslie Lamport en 198312. Plus exactement, il s'agit d'une collection de macro-commandes destinées à faciliter l'utilisation du \og processeur de texte \fg{} TeX de Donald Knuth. Depuis 1993, il est maintenu par le LaTeX3 Project team. La première version utilisée largement, appelée LaTeX2.09, est sortie en 1984. Une révision majeure, appelée LaTeX2 epsilon est sortie en 1991.
+La programmation logique fait de la déduction sur les axiomes.
+On utilise la logique comme un langage de programmation : on va adapter l’algorithme de réfutation qu’on a vu précédemment
 
-Le nom est l'abréviation de Lamport TeX. On écrit souvent \LaTeX, le logiciel permettant les mises en forme correspondant au logo.
+Le programme (ressemble à une théorie):
+\begin{itemize}
+	\item Axiomes en logique des prédicats
+	\item Une requête, un but (=goal) -> le but du système est de prouver quelque chose
+	\item Un prouveur de théorème -> attention: il faut des conditions sur le prouveur car on doit être capable de prévoir le temps et l’espace utilisé par le programme.
+\end{itemize}
 
-Du fait de sa relative simplicité, il est devenu la méthode privilégiée d'écriture de documents scientifiques employant TeX. Il est particulièrement utilisé dans les domaines techniques et scientifiques pour la production de documents de taille moyenne ou importante (thèse ou livre, par exemple). Néanmoins, il peut aussi être employé pour générer des documents de types variés (par exemple, des lettres, ou des transparents).
+\paragraph{}
+Exécuter un programme = faire des déductions en essayant de prouver le but. Mais est-ce que cette idée peut donner un système de programmation pratique?
+
+\paragraph{}
+Il y a une tension entre expressivité et efficacité: Si c’est trop expressif, ça devient moins efficace, par contre si c’est trop peu expressif, on ne peut rien programmer, ça ne sert à rien non plus. Il faut donc être expressif tout en restant efficace. Le Prolog offre un bon mélange entre expressivité et efficacité.
+
+\paragraph{}
+Mais pour arriver à cela, il y a quelques problèmes à surmonter:
+\begin{enumerate}
+	\item un prouveur est limité
+		vérité = $ p \models q $ (= $ q $ est vrai dans tous les modèles de $ p $)\\
+		preuve = $ p  \vdash q $ \\
+		$ p \models q \Rightarrow p \vdash q $ (= Si c’est vrai dans tous les modèles, on peut trouver une preuve)\\
+		Si $ p \models q $ alors l’algorithme se terminera. Cependant, on ne peut pas trouver les preuves pour des choses vraies dans tous les modèles. (Comme c’est impossible on ne prend qu’une partie des modèles. Ceci est une limitation du programme).
+		
+		\item b) Même si on peut trouver une preuve, le prouveur est peut-être inefficace (utilise trop de temps ou de mémoire) ou imprévisible. $ \to $ On ne peut pas raisonner sur l’efficacité du prouveur.
+		
+		\item c) La déduction faite par le prouveur doit être constructive  
+\end{enumerate}
+
+		Si le prouveur dit: $ (\exists X) P(X) $  alors le prouveur doit donner une valeur de x (c’est quoi $ x $).
+
 
