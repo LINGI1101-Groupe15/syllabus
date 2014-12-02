@@ -78,6 +78,40 @@ Aujourd'hui, on peut faire une implémentation extrêmement efficace de Prolog. 
 
 \subsection{Introduction à Prolog}
 
+En Prolog, on a des clauses (règles):
+	\begin{equation}
+		 A1 \leftarrow B1, … , Bn
+	\end{equation}
+	 (On peut prouver $ A $ en prouvant $ B1 $ jusqu’à $ Bn $. Remarque :$ \leftarrow $ou :- )
+	 
+	 \begin{equation}
+	 	\neg (B_{1} \wedge ... \wedge B_{n}) \vee A_{1}
+	 \end{equation}
+	 \begin{equation}
+	 	 (\neg B_{1} \vee \neg B_{2} \vee ... \vee \neg B_{n} \vee A_{1})
+	 \end{equation}
+	 
+	 Programme = ensemble de clauses.
+	 
+	 \underline{Exemple d’un petit programme en Prolog:} (extrait du livre « The Art of Prolog » par L. Sterling et E. Shapine)
+	 
+	 Règle : $ grandpere(x, z) \leftarrow pere(x,y), pere(y,z) $. ($x$, $y$,… sont des variables. En Prolog, elles sont souvent en majuscule)
+	 
+	 \begin{table}[h]
+	 	\begin{tabular}{ll}
+	 		Faits: & $pere(terach, abraham)$ (terach, abraham,… sont des constantes) \\
+	 		& $pere(abraham, isaac)$\\
+	 		& $pere(haram, lot)$ \\
+	 		& $…$ \\\\
+	 		$ \to $ & Syntaxe clausale: $pere(terach,abraham) \wedge pere(abraham,isaac) \wedge  $ \\
+	 		& $ pere(haram,lot) \wedge (\neg pere(x,y) \vee \neg pere(y,z) \vee grandpere(x,z))      $                                                         
+	 	\end{tabular}
+	 \end{table}
+	 
+	 Prolog a un grand lien avec les bases de données. Elles ont été inventées quasi au même moment et aujourd'hui Prolog et utilisé comme une sémantique pour les bases de donnés déductibles. Ici on peut avoir une relation avec deux colonnes qui auraient l'argument père. le grand-père serait une combinaison de ces deux relations.
+	 
+	 Prolog peut être vu comme une sorte de base de données relationnelle mais beaucoup plus puissante, car on peut faire des programmes qui sont plus que des simples requêtes, des programmes de calculs beaucoup plus complexes.
+	 
 \subsection{Algorithme d'exécution de Prolog}
 
 Dans la version de l’algorithme de preuve par résolution, l’ensemble S grandit (ce qui n’est pas très efficace).
