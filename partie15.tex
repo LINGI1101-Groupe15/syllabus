@@ -133,4 +133,19 @@ Programme  : $P={Ax_{1}, ..., Ax_{n}}$
 
 Un « but » (un goal, une « requête ») G ($\simeq$ théorie)
 
-$r := <G>$ … résolvante (une séquence de littéraux $\rightarrow$ $r= <A_{1},A_{2},...,A_{m}>$  Il n’y a qu’un seul r.)
+
+\begin{algorithm}[H]
+$r := <G>$ … résolvante (une séquence de littéraux $\rightarrow$ $r= <A_{1},A_{2},...,A_{m}>$  Il n’y a qu’un seul r.)\\
+\While{r est non vide}{
+	\begin{itemize}
+		\item Choisir un littéral $A_{1}$ dans r (on prend le premier littéral)
+		\item Choisir une clause $Ax_{1}=(A \leftarrow B_{1},...,B_{k})$ dans P. (D’abord on prend la première clause, puis la suivantes jusqu’à ce qu’on trouve une clause unifiable avec $A_{1}$. Si aucune clause n’est unifiable on revient sur le dernier choix (backtrack))
+		\item Nouvelle résolvante $:= <B_{1},..., B_{k}, A_{2},...,A_{m}> \sigma$
+		\item $G^{'} = G \sigma$
+	\end{itemize}
+}
+\If{r est vide}{le résultat est le dernier $G^{'}$}
+\If{on épuise les choix sans que r soit vide}{le résultat est NON. ( On n’a pas prouvé G). (Attention : G est peut-être vrai, mais les heuristiques ne suffisent pas pour le prouver.)}
+\end{algorithm}
+
+On peut également avoir une boucle infinie (l’algorithme est non déterministe).
